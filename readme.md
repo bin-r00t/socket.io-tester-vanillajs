@@ -1,9 +1,10 @@
 # 消息系统设计
 
-> Description: 该规范，规定了前后端应该实现的消息名称，以及消息的载荷，需严格遵守，避免随意更改
-> Author: bin-r00t
-> Date:
-> Version: 0.1
+> Description: 该规范，规定了前后端应该实现的消息名称，以及消息的载荷，需严格遵守，避免随意更改  
+> Author: bin-r00t  
+> Date:  
+> Version: 0.1  
+
 
 ## 事件名称概览
 
