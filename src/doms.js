@@ -9,6 +9,7 @@ function addMessage(message) {
   const msg = doms.messageTemplate.content.cloneNode(true);
   msg.querySelector("p").innerText = message;
   doms.messages.appendChild(msg);
+  doms.messages.lastElementChild.scrollIntoView();
 }
 
 export default doms;

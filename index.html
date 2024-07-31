@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>user end</title>
   </head>
-  <body>
-    <div id="app" class="flex flex-col p-5">
+  <body class="h-screen flex flex-col justify-center items-center">
+    <div id="app" class="max-w-96 rounded-lg flex flex-col p-5 border">
       <section class="border p-2 flex items-center gap-3">
         <input
           id="token"
@@ -21,7 +21,7 @@
           connect
         </button>
       </section>
-      <section id="messages" class="mt-8 min-h-10 border flex flex-col gap-2 p-3"></section>
+      <section id="messages" class="mt-8 max-h-[640px] min-h-10 overflow-y-auto border flex flex-col gap-2 p-3"></section>
       <template id="message-item">
         <div>
           <p
