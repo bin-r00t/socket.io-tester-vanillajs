@@ -36,10 +36,15 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   devServer: {
     port: 9999,
     open: true,
     // liveReload: true,
-    hot: true
+    hot: true,
   },
 };
