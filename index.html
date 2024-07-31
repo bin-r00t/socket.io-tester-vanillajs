@@ -5,23 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>user end</title>
   </head>
-  <body class="h-screen flex flex-col justify-center items-center">
-    <div id="app" class="max-w-96 rounded-lg flex flex-col p-5 border">
-      <section class="border p-2 flex items-center gap-3">
+  <body class="h-screen bg-gray-500 flex flex-col justify-center items-center relative">
+    <header class="p-3 absolute top-0 left-0 w-full border">
+      <section class="p-2 flex items-center gap-3">
+        <!-- connect inputs  -->
+        <input
+          id="url"
+          type="text"
+          placeholder="Socket.io Server URL"
+          class="border outline-none p-1 px-3 rounded"
+          value="http://localhost:8000"
+        />
+        <input
+          id="path"
+          type="text"
+          placeholder="path, defaults to /ws"
+          class="border outline-none p-1 px-3 rounded"
+          value="/ws"
+        />
         <input
           id="token"
           type="text"
           placeholder="token"
           class="border outline-none p-1 px-3 rounded"
+          value="asdf"
         />
+
+        <!-- message inputs -->
+        <input
+          id="message-input"
+          type="text"
+          placeholder="User message"
+          class="border outline-none p-1 px-3 rounded hidden"
+        />
+        <input id="file-upload" type="file" class="hidden" />
+
+        <!-- connect button group -->
         <button
           id="connect-btn"
           class="bg-indigo-500 text-white p-1 px-3 rounded"
         >
           connect
         </button>
+
+        <!-- connected button group -->
+        <button
+          id="send-btn"
+          class="bg-green-500 text-white p-1 px-3 rounded hidden"
+        >
+          send
+        </button>
+        <button
+          id="close-btn"
+          class="bg-red-500 text-white p-1 px-3 rounded hidden"
+        >
+          close
+        </button>
+
+        <!-- end  -->
       </section>
-      <section id="messages" class="mt-8 max-h-[640px] min-h-10 overflow-y-auto border flex flex-col gap-2 p-3"></section>
+    </header>
+    <div id="app" class="w-96 rounded-lg flex flex-col p-5 border">
+      <section
+        id="messages"
+        class="mt-8 max-h-[640px] min-h-10 overflow-y-auto flex flex-col gap-2 p-3"
+      ></section>
       <template id="message-item">
         <div>
           <p

@@ -1,6 +1,15 @@
+import { io } from "socket.io-client";
+import setupWs from "./ws";
+
 const doms = {
   tokenInput: document.getElementById("token"),
-  submitBtn: document.getElementById("connect-btn"),
+  pathInput: document.getElementById("path"),
+  urlInput: document.getElementById("url"),
+  connectBtn: document.getElementById("connect-btn"),
+  fileInput: document.getElementById("file-upload"),
+  messageInput: document.getElementById("message-input"),
+  sendBtn: document.getElementById("send-btn"),
+  closeBtn: document.getElementById("close-btn"),
   messages: document.getElementById("messages"),
   messageTemplate: document.getElementById("message-item"),
 };
@@ -27,6 +36,39 @@ function addImageMessage(imgUrlOrBuffer) {
     //
     console.log(imgUrlOrBuffer);
   }
+}
+
+/**
+ * 开启socketio链接
+ */
+export function handleConnect() {
+  const client = io(`${doms.urlInput.value}/?token=${doms.tokenInput.value}`, {
+    path: doms.pathInput.value,
+  });
+  setupWs(client);
+  hideConnectButton();
+}
+
+export function hideConnectButton() {
+  doms.connectBtn.classList.add("hidden");
+  doms.urlInput.classList.add("hidden");
+  doms.tokenInput.classList.add("hidden");
+  doms.pathInput.classList.add("hidden");
+  doms.closeBtn.classList.remove("hidden");
+  doms.sendBtn.classList.remove("hidden");
+  doms.messageInput.classList.remove("hidden");
+  doms.fileInput.classList.remove("hidden");
+}
+
+export function showConnectButton() {
+  doms.connectBtn.classList.remove("hidden");
+  doms.urlInput.classList.remove("hidden");
+  doms.tokenInput.classList.remove("hidden");
+  doms.pathInput.classList.remove("hidden");
+  doms.closeBtn.classList.add("hidden");
+  doms.sendBtn.classList.add("hidden");
+  doms.messageInput.classList.add("hidden");
+  doms.fileInput.classList.add("hidden");
 }
 
 export default doms;

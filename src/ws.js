@@ -1,4 +1,4 @@
-import { addMessage, addImageMessage } from "./doms.js";
+import { addMessage, addImageMessage, showConnectButton } from "./doms.js";
 import E from "@/events";
 
 let log = (args) => console.log(`[*] ${args}`);
@@ -6,6 +6,7 @@ let log = (args) => console.log(`[*] ${args}`);
 export default function setupWs(io) {
   io.on("disconnect", () => {
     addMessage("disconnect");
+    showConnectButton();
   });
   io.on("connect", () => {
     addMessage("connected");
