@@ -1,5 +1,6 @@
 import { io } from "socket.io-client";
 import setupWs from "./ws";
+import E from "@/events";
 
 const doms = {
   tokenInput: document.getElementById("token"),
@@ -41,8 +42,9 @@ function addImageMessage(imgUrlOrBuffer) {
 /**
  * 开启socketio链接
  */
+let client;
 export function handleConnect() {
-  const client = io(`${doms.urlInput.value}/?token=${doms.tokenInput.value}`, {
+  client = io(`${doms.urlInput.value}/?token=${doms.tokenInput.value}`, {
     path: doms.pathInput.value,
   });
   setupWs(client);
@@ -69,6 +71,16 @@ export function showConnectButton() {
   doms.sendBtn.classList.add("hidden");
   doms.messageInput.classList.add("hidden");
   doms.fileInput.classList.add("hidden");
+}
+
+export function sendMessage() {
+  const message = doms.messageInput.value;
+  console.log(E.UserMessage, message);
+  client.emit(E.UserMessage, {
+    raw: message, // string
+    type: 'text',
+    timestamp: Date.now(),
+  });
 }
 
 export default doms;
